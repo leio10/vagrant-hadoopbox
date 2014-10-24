@@ -1,4 +1,4 @@
-package WordCount;
+package mapreduce;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -14,6 +14,7 @@ public class WordCountDriver {
     job.setJarByClass(WordCountDriver.class);
     job.setMapperClass(WordCountMapper.class);
     job.setReducerClass(WordCountReducer.class);
+    //job.setNumReduceTasks(0);
     job.setOutputKeyClass(Text.class);
     job.setOutputValueClass(IntWritable.class);
     FileInputFormat.addInputPath(job, new Path(args[0]));

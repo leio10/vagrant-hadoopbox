@@ -1,0 +1,25 @@
+CREATE TABLE movies (movie_id int, movie_title  string, release_date  string, video_release_date  string, IMDB_URL  string, unknown int, Action int, Adventure int, Animation int, Childrens int, Comedy int, Crime int, Documentary int, Drama int, Fantasy int, FilmNoir int, Horror int, Musical int, Mystery int, Romance int, SciFi int, Thriller int, War int, Western int)
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY '|'
+    STORED AS TEXTFILE;
+
+LOAD  DATA LOCAL INPATH  '/vagrant/files/data/movielens/ml-100k/u.item' OVERWRITE INTO TABLE movies;
+
+CREATE TABLE ratings (user_id INT, movie_id INT, rating INT, timestamp STRING)
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY '\t'
+    STORED AS TEXTFILE;
+
+LOAD  DATA LOCAL INPATH  '/vagrant/files/data/movielens/ml-100k/u.data' OVERWRITE INTO TABLE ratings;
+
+SELECT  year(from_unixtime(unix_timestamp(release_date, 'dd-MMM-yyyy'))) as year, 
+        avg(r.rating) as rating, 
+        count(m.movie_id) as total 
+FROM ratings r 
+INNER join movies m 
+    ON r.movie_id = m.movie_id
+GROUP BY year(from_unixtime(unix_timestamp(release_date, 'dd-MMM-yyyy')));
+
+/* MAHOUT */
+select rating, movie_title from ratings r inner join movies m on r.movie_id=m.movie_id where r.user_id=872 order by rating desc;
+select movie_title from movies where movie_id IN (1426, 1524, 1293, 863);

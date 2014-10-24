@@ -1,4 +1,4 @@
-package WordCount;
+package mapreduce;
 
 import java.io.IOException;
 
@@ -12,6 +12,9 @@ public class WordCountReducer extends Reducer<Text, IntWritable, Text, IntWritab
     for (IntWritable val : values) {
       sum += val.get();
     }
+    
+    int a = 0;
+    int b = 1;
     context.write(key, new IntWritable(sum));
   }
 }
