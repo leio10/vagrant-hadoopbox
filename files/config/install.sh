@@ -58,7 +58,10 @@ sudo apt-get install --yes hbase-master
 echo "Install Pig"
 sudo apt-get install --yes pig
 
+echo "Install Mahout"
+sudo apt-get install --yes mahout
+
 sudo su
-echo -e "export HIVE_OPTS=\"-hiveconf mapred.job.tracker=yarn -hiveconf fs.default.name=hdfs://localhost:9000 -hiveconf hive.metastore.warehouse.dir=hdfs:///user/hive/warehouse -hiveconf javax.jdo.option.ConnectionURL=jdbc:derby:;databaseName=/tmp/metastore_db;create=true\"\nexport JAVA_HOME=\"/usr/lib/jvm/java-1.7.0-openjdk-amd64/\"\nexport CLASSPATH=\`hadoop classpath\`" > /etc/profile.d/envvars.sh
-echo -e "LC_ALL=\"en_US.UTF-8\"" >> /etc/default/locale
+echo -e "export HIVE_OPTS=\"-hiveconf mapred.job.tracker=yarn -hiveconf fs.default.name=hdfs://localhost:8020 -hiveconf hive.metastore.warehouse.dir=hdfs:///user/vagrant/warehouse -hiveconf javax.jdo.option.ConnectionURL=jdbc:derby:;databaseName=/tmp/metastore_db;create=true\"\nexport JAVA_HOME=\"/usr/lib/jvm/java-1.7.0-openjdk-amd64/\"\nexport CLASSPATH=\"\`hadoop classpath\`:/usr/lib/pig/*\"" > /etc/profile.d/envvars.sh
+echo -e "LC_ALL=\"en_US.UTF-8\"" > /etc/default/locale
 

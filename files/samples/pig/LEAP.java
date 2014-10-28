@@ -2,7 +2,6 @@ package udf;
 import java.io.IOException;
 import org.apache.pig.EvalFunc;
 import org.apache.pig.data.Tuple;
-import org.apache.pig.impl.util.WrappedIOException;
 
 public class LEAP extends EvalFunc<Boolean>
 {
@@ -13,7 +12,7 @@ public class LEAP extends EvalFunc<Boolean>
             int number = ((Integer)input.get(0)).intValue();
             return new Boolean(number%4==0 && number%100!=0);
         }catch(Exception e){
-            throw WrappedIOException.wrap("Caught exception processing input row ", e);
+            throw new IOException("Caught exception processing input row ", e);
         }
     }
 }
