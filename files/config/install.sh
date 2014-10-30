@@ -62,7 +62,7 @@ echo "Install Mahout"
 sudo apt-get install --yes mahout
 
 sudo su
-echo "export HIVE_OPTS=\"-hiveconf mapred.job.tracker=yarn -hiveconf fs.default.name=hdfs://localhost:8020 -hiveconf hive.metastore.warehouse.dir=hdfs:///user/vagrant/warehouse -hiveconf javax.jdo.option.ConnectionURL=jdbc:derby:;databaseName=/tmp/metastore_db;create=true\"\nexport JAVA_HOME=\"/usr/lib/jvm/java-1.7.0-openjdk-amd64/\"\nexport CLASSPATH=\"\`hadoop classpath\`:/usr/lib/pig/*\"" > /etc/profile.d/envvars.sh
+echo "export HIVE_OPTS=\"-hiveconf mapreduce.jobtracker.address=localhost:8021 -hiveconf fs.defaultFS=hdfs://localhost:8020 -hiveconf hive.metastore.warehouse.dir=hdfs:///user/vagrant/warehouse -hiveconf javax.jdo.option.ConnectionURL=jdbc:derby:;databaseName=/tmp/metastore_db;create=true\"\nexport JAVA_HOME=\"/usr/lib/jvm/java-1.7.0-openjdk-amd64/\"\nexport CLASSPATH=\"\`hadoop classpath\`:/usr/lib/pig/*\"" > /etc/profile.d/envvars.sh
 echo "LC_ALL=\"en_US.UTF-8\"" > /etc/default/locale
 
 echo "\nGRUB_RECORDFAIL_TIMEOUT=0" >> /etc/default/grub
