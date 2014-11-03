@@ -3,14 +3,14 @@ CREATE TABLE movies (movie_id int, movie_title  string, release_date  string, vi
     FIELDS TERMINATED BY '|'
     STORED AS TEXTFILE;
 
-LOAD DATA INPATH 'hdfs://user/vagrant/movielens/ml-100k/u.item' OVERWRITE INTO TABLE movies;
+LOAD DATA INPATH 'hdfs:///user/vagrant/movielens/ml-100k/u.item' OVERWRITE INTO TABLE movies;
 
 CREATE TABLE ratings (user_id INT, movie_id INT, rating INT, timestamp STRING)
     ROW FORMAT DELIMITED
     FIELDS TERMINATED BY '\t'
     STORED AS TEXTFILE;
 
-LOAD DATA INPATH 'hdfs://user/vagrant/movielens/ml-100k/u.data' OVERWRITE INTO TABLE ratings;
+LOAD DATA INPATH 'hdfs:///user/vagrant/movielens/ml-100k/u.data' OVERWRITE INTO TABLE ratings;
 
 SELECT  year(from_unixtime(unix_timestamp(release_date, 'dd-MMM-yyyy'))) as year, 
         avg(r.rating) as rating, 
